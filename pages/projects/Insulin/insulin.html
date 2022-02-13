@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head> 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>SteinStrong Insulin Calculator</title>
+  </head>
+     <body>
+     
+      <center><div class="card" style="width: 25rem;">
+        <img src="InsulinLogo.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Insulin Calculator</h5>
+          <p class="card-text">Welcome to SteinStrong Insulin Calculator. 
+            <b>INSTRUCTIONS:</b> Please enter your glucose reading in the field below. After entering your glucose reading, click the Calculate Insulin button. Your results will be displayed below the button. <b><i><u>DISCLAIMER: This is intended for Rob Stein only. The values used in this calculation are specific to Rob Stein's needs.</u></i></b> </p>
+          <!-- <input type="text" id="glucose" value=""> -->
+          <input type="text" class="form-control" id="glucose" placeholder="Enter Gluceose Reading"> <br>
+          <button onclick="calculateInsulin()" type="button" class="btn btn-primary">Calculate Insulin</button> <br> </br>
+
+          <label id="insulinValue"></label>
+        </div>
+      </div></center>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <script>
+      
+      var baselineInsulin = 10;
+      var totalInsulin = 0;
+      // userMessage function to take totalInsulin and myGlucose parameters then concatonate this into the response to the user. Future imporovement add in variations.
+      function userMessage(totalInsulin, myGlucose){
+        let message = "";
+        message = "You need to take " +totalInsulin + " units based on your glucose value of " + myGlucose + "mg.";
+        return message;
+      }
+
+      // function readInput(id){
+      //   let input = id.value;
+      //   alert("the ID is" + input);
+      //   let results = '';
+      //   results = document.getElementById(input).value;
+      //   alert(input); 
+      //   return results;
+      // }
+
+      // calculateInsulin function is to read the input from the user, and calculate the insulin based on a couple of variables. 
+      function calculateInsulin(){
+        var myGlucose = document.getElementById("glucose").value;
+        if (myGlucose <= 119) {
+          // readInput(insulinValue);
+          // alert("calculateInsulin");
+          document.getElementById("insulinValue").innerHTML = "No insulin required based on your " + myGlucose + "mg.";
+        } else if (myGlucose <= 150) {
+          totalInsulin = baselineInsulin + 0
+          document.getElementById("insulinValue").innerHTML = userMessage(totalInsulin, myGlucose);
+        } else if (myGlucose <= 200) {
+          totalInsulin = baselineInsulin + 4
+          document.getElementById("insulinValue").innerHTML = userMessage(totalInsulin, myGlucose);
+        } else if (myGlucose <= 250) {
+          totalInsulin = baselineInsulin + 6
+          document.getElementById("insulinValue").innerHTML = userMessage(totalInsulin, myGlucose);
+        }  else if (myGlucose <= 300) {
+          totalInsulin = baselineInsulin + 8
+          document.getElementById("insulinValue").innerHTML = userMessage(totalInsulin, myGlucose);
+        }   else if (myGlucose <= 350) {
+          totalInsulin = baselineInsulin + 10
+          document.getElementById("insulinValue").innerHTML = userMessage(totalInsulin, myGlucose);
+        }   else if (myGlucose <= 400) {
+          totalInsulin = baselineInsulin + 12
+          document.getElementById("insulinValue").innerHTML = userMessage(totalInsulin, myGlucose);
+        }   else if (myGlucose <= 450) {
+          totalInsulin = baselineInsulin + 14
+          document.getElementById("insulinValue").innerHTML = userMessage(totalInsulin, myGlucose);
+        }   else if (myGlucose <= 500) {
+          totalInsulin = baselineInsulin + 18
+          document.getElementById("insulinValue").innerHTML = userMessage(totalInsulin, myGlucose);
+        } else if (myGlucose >= 501){
+          document.getElementById("insulinValue").innerHTML = "No Matches found based on your glucose value of " + myGlucose + "mg. You should ensure you entered the right value, or contact your Doctor. ";
+        } else {
+          document.getElementById("insulinValue").innerHTML = "Please double check your entry, only numbers between 0 and 1000 are valid.";
+        }
+}
+
+    </script>
+  </body>
+</html>
+
+
+
+
+
